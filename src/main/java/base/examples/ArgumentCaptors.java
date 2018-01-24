@@ -38,7 +38,7 @@ public class ArgumentCaptors
 	 * take place during code execution. 
 	 */
 	@Test
-	public void test() {
+	public void testSingleInvocation() {
 		// call actual methods while using the spy or mock
 		spyList.add(new Integer(5));
 		spyList.addAll(0, Lists.newArrayList(new Integer(1)));
@@ -66,7 +66,7 @@ public class ArgumentCaptors
 	 * take place during code execution. 
 	 */
 	@Test
-	public void testTwo() {
+	public void testMultipleInvocations() {
 		spyList.add(new Integer(1));
 		spyList.add(new Integer(2));
 		spyList.add(new Integer(3));

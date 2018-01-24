@@ -26,7 +26,12 @@ import org.mockito.stubbing.Answer;
 
 public class SpysAndMocksSyntax
 {
-
+	/*
+	 * Showing different, equivalent ways of creating Mocks and Spys.
+	 * (with the exception of mockedClassB which is showing how to use withSettings(). 
+	 */
+	
+	
 	@Mock
 	MockedClass mockedClassA;
 	
@@ -102,6 +107,20 @@ public class SpysAndMocksSyntax
 		assertFalse(responseOne == responseTwo);
 	}
 	
+	/**
+	 * Use of any() to verify argument here, differs from any()
+	 * above in that it takes a class. For our case this doesn't matter
+	 * because we only have one method named multiplyByTen(). 
+	 * 
+	 * If we were to uncomment to overloaded OuterClass.multipleByTen(Double)
+	 * this syntax would be required in order to use any().
+	 */
+	@Test 
+	public void testRestrictAnyMatchByClass() {
+		spyClassA.multiplyByTen(1);
+		verify(spyClassA, times(1)).multiplyByTen(any(Integer.class));
+	}
+ 	
 	static class OuterClass {
 		private MockedClass mockClass;
 		
@@ -112,6 +131,10 @@ public class SpysAndMocksSyntax
 		public Integer multiplyByTen(Integer input) {
 			return input * 10;
 		}
+		
+//		public Double multiplyByTen(Double input) {
+//			return input * 10;
+//		}
 	}
 	
 	static class MockedClass {
