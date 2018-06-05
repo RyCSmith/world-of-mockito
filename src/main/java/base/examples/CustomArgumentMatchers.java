@@ -17,6 +17,13 @@ import org.mockito.MockitoAnnotations;
 
 import com.google.common.collect.Lists;
 
+/*
+Any argument of class : any(DomainPublication.class)
+
+Lambda argument matcher : 
+	import static org.mockito.ArgumentMatchers.argThat;
+	argThat(x -> return x == 5)
+*/
 public class CustomArgumentMatchers
 {
 
@@ -61,6 +68,25 @@ public class CustomArgumentMatchers
 		assertEquals(20, spyList.size());
 		verify(spyList, times(5)).addAll(argThat(new IsLongList()));
 		verify(spyList, times(5)).addAll(argThat(new IsShortList()));
+	}
+	
+	/**
+	 * This is the same exact test as test() but using lambdas.
+	 */
+	@Test
+	public void testSameAsAboveButWithLambdas() {
+		for (int i = 0; i < 5; i++) {
+			spyList.addAll(shortList);
+			spyList.addAll(longList);
+		}
+		
+		assertEquals(20, spyList.size());
+		verify(spyList, times(5)).addAll(argThat(x -> x != null && x.size() > 2));
+		verify(spyList, times(5)).addAll(argThat(x -> x != null && x.size() < 2));
+		
+		// note: if you have methods with same name and same # args
+		// and need to specify which one add the arg type
+		verify(spyList, times(5)).addAll(argThat((List<Integer> x) -> x != null && x.size() < 2));
 	}
 	
 }
