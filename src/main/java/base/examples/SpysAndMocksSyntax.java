@@ -40,6 +40,8 @@ public class SpysAndMocksSyntax
 			.defaultAnswer(AnswerFunctionalInterfaces.toAnswer(x -> x)) // setting default response to no argument methods
 			.defaultAnswer(AnswerFunctionalInterfaces.toAnswer((x, y) -> x))); // setting default response to single argument methods
 			// also see the functional interfaces themselves for design on a anonymous class - that's what they're creating
+
+			// *also see MockWithInterface to see how to use withSettings to add an interface implementation to a mock.
 	
 	MockedClass mockedClassC = mock(MockedClass.class);
 	

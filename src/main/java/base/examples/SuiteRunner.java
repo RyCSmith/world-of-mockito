@@ -6,12 +6,14 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(value = Suite.class)
 @SuiteClasses(value = {
-	ArgumentCaptors.class,
-	CustomArgumentMatchers.class,
-	InvocationListenerOnMock.class,
-	InvocationListenerOnSpy.class,
-	MockThrowingException.class,
-	SpysAndMocksSyntax.class
+		ArgumentCaptors.class,
+		CustomArgumentMatchers.class,
+		InvocationListenerOnMock.class,
+		InvocationListenerOnSpy.class,
+		MockThrowingException.class,
+		SpysAndMocksSyntax.class,
+		ArgumentCaptorsWithGenerics.class,
+		MockWithInterface.class
 })
 public class SuiteRunner
 {
